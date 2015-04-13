@@ -1,0 +1,22 @@
+services:
+    cdo_user.user_manager.conn1:
+        class: Cdo\UserBundle\Service\UserManager
+        public: true
+        arguments:
+            - @security.encoder_factory
+            - @fos_user.util.username_canonicalizer
+            - @fos_user.util.email_canonicalizer
+            - @doctrine
+            - 'conn1_manager'
+            - %fos_user.model.user.class%
+
+    cdo_user.user_manager.conn2:
+        class: Cdo\UserBundle\Service\UserManager
+        public: true
+        arguments:
+            - @security.encoder_factory
+            - @fos_user.util.username_canonicalizer
+            - @fos_user.util.email_canonicalizer
+            - @doctrine
+            - 'conn2_manager'
+            - %fos_user.model.user.class%

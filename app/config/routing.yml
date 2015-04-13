@@ -1,0 +1,11 @@
+cdo_user:
+    resource: "@CdoUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ptm_site:
+    resource: "@PtmSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
