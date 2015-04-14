@@ -1,3 +1,0 @@
-ptm_site_visitor_site:
-    resource: "@PtmSiteBundle/Controller/Visitor/SiteController.php"
-    type:     annotation

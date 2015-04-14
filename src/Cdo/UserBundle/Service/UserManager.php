@@ -19,21 +19,21 @@ class UserManager extends BaseUserManager
 	 * @param CanonicalizerInterface  $usernameCanonicalizer
 	 * @param CanonicalizerInterface  $emailCanonicalizer
 	 * @param RegistryInterface       $doctrine
-	 * @param string                  $connName
-	 * @param string                  $class
+	 * @param string                  $connectionName
+	 * @param string                  $userClass
 	 */
 	public function __construct(EncoderFactoryInterface $encoderFactory, CanonicalizerInterface $usernameCanonicalizer,
-	                            CanonicalizerInterface $emailCanonicalizer, RegistryInterface $doctrine, $connName, $class)
+	                            CanonicalizerInterface $emailCanonicalizer, RegistryInterface $doctrine, $connectionName, $userClass)
 	{
-	    $om = $doctrine->getEntityManager($connName);
-	    parent::__construct($encoderFactory, $usernameCanonicalizer, $emailCanonicalizer, $om, $class);
+	    $om = $doctrine->getEntityManager($connectionName);
+	    parent::__construct($encoderFactory, $usernameCanonicalizer, $emailCanonicalizer, $om, $userClass);
 	}
 	
 	/**
 	 * Just for test
 	 * @return EntityManager
 	 */
-	public function getOM()
+	public function getObjectManager()
 	{
 	    return $this->objectManager;
 	}

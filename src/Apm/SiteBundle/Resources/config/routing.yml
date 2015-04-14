@@ -1,0 +1,3 @@
+apm_site_visitor_site:
+    resource: "@ApmSiteBundle/Controller/Visitor/SiteController.php"
+    type:     annotation

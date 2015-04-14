@@ -25,7 +25,7 @@ class AppKernel extends Kernel
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             
             new AppBundle\AppBundle(),
-            new Ptm\SiteBundle\PtmSiteBundle(),
+            new Apm\SiteBundle\ApmSiteBundle(),
             new Cdo\UserBundle\CdoUserBundle(),
         );
 

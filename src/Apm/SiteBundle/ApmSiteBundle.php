@@ -1,9 +1,9 @@
 <?php
 
-namespace Ptm\SiteBundle;
+namespace Apm\SiteBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class PtmSiteBundle extends Bundle
+class ApmSiteBundle extends Bundle
 {
 }

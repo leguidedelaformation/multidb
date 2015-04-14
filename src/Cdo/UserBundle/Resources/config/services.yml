@@ -1,5 +1,5 @@
 services:
-    cdo_user.user_manager.conn1:
+    cdo_user.user_manager.connection_default:
         class: Cdo\UserBundle\Service\UserManager
         public: true
         arguments:
@@ -7,10 +7,10 @@ services:
             - @fos_user.util.username_canonicalizer
             - @fos_user.util.email_canonicalizer
             - @doctrine
-            - 'conn1_manager'
+            - 'manager_default'
             - %fos_user.model.user.class%
 
-    cdo_user.user_manager.conn2:
+    cdo_user.user_manager.connection_0:
         class: Cdo\UserBundle\Service\UserManager
         public: true
         arguments:
@@ -18,5 +18,5 @@ services:
             - @fos_user.util.username_canonicalizer
             - @fos_user.util.email_canonicalizer
             - @doctrine
-            - 'conn2_manager'
+            - 'manager_0'
             - %fos_user.model.user.class%

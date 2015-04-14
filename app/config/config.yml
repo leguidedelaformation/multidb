@@ -42,20 +42,21 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
+        default_connection: connection_default
         connections:
-            conn1:
+            connection_default:
                 driver:   "%database_driver%"
                 host:     "%database_host%"
                 port:     "%database_port%"
-                dbname:   "%database_name1%"
+                dbname:   "%database_name_default%"
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
-            conn2:
+            connection_0:
                 driver:   "%database_driver%"
                 host:     "%database_host%"
                 port:     "%database_port%"
-                dbname:   "%database_name2%"
+                dbname:   "%database_name_0%"
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
@@ -63,16 +64,16 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         # auto_mapping: true
-        default_entity_manager:   conn1_manager
+        default_entity_manager:   manager_default
         entity_managers:
-            conn1_manager:
+            manager_default:
                 mappings:
                     CdoUserBundle: ~
-                connection:       conn1
-            conn2_manager:
+                connection:       connection_default
+            manager_0:
                 mappings:
                     CdoUserBundle: ~
-                connection:       conn2
+                connection:       connection_0
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -82,9 +83,17 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+# FOS User Configuration
 fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    db_driver:     orm
     firewall_name: main
-    user_class: Cdo\UserBundle\Entity\User
+    user_class:    Cdo\UserBundle\Entity\User
     service:
-        user_manager: cdo_user.user_manager.conn1 # need to set default
+        user_manager: cdo_user.user_manager.connection_default # need to set default
+    profile:
+        form:
+            type: cdo_user_profile
+            validation_groups: [Default]
+    registration:
+        confirmation:
+            enabled: true
