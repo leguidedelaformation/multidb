@@ -1,0 +1,4 @@
+cdo_account_master_account:
+    resource: "@CdoAccountBundle/Controller/Master/AccountController.php"
+    type:     annotation
+

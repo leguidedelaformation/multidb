@@ -18,6 +18,23 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @var string
+     */
+    protected $usernameCanonical;
+
+    public function getUsernameCanonical()
+    {
+        return $this->usernameCanonical;
+    }
+
+    public function setUsernameCanonical($usernameCanonical)
+    {
+        $this->usernameCanonical = $usernameCanonical;
+
+        return $this;
+    }
+
     public function __construct()
     {
         parent::__construct();

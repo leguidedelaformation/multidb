@@ -1,0 +1,3 @@
+apm_account_master_account:
+    resource: "@ApmAccountBundle/Controller/Master/AccountController.php"
+    type:     annotation

@@ -28,6 +28,8 @@ class AppKernel extends Kernel
             new Apm\SiteBundle\ApmSiteBundle(),
             new Apm\UserBundle\ApmUserBundle(),
             new Cdo\UserBundle\CdoUserBundle(),
+            new Cdo\AccountBundle\CdoAccountBundle(),
+            new Apm\AccountBundle\ApmAccountBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

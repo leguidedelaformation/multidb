@@ -16,11 +16,11 @@ class FOSUserMultiConnection extends WebTestCase
     {
         $client = static::createClient();
         
-        $user_manager_connection_default = $client->getContainer()->get('cdo_user.user_manager.connection_default');
+        $user_manager_connection_apm = $client->getContainer()->get('cdo_user.user_manager.connection_apm');
         
         $user_manager_connection_0 = $client->getContainer()->get('cdo_user.user_manager.connection_0');
         
-        $om1 = $user_manager_connection_default->getObjectManager();
+        $om1 = $user_manager_connection_apm->getObjectManager();
         
         $om2 = $user_manager_connection_0->getObjectManager();
         

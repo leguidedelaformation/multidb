@@ -42,13 +42,13 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        default_connection: connection_default
+        default_connection: connection_apm
         connections:
-            connection_default:
+            connection_apm:
                 driver:   "%database_driver%"
                 host:     "%database_host%"
                 port:     "%database_port%"
-                dbname:   "%database_name_default%"
+                dbname:   "%database_name_apm%"
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
@@ -64,15 +64,17 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         # auto_mapping: true
-        default_entity_manager:   manager_default
+        default_entity_manager:   manager_apm
         entity_managers:
-            manager_default:
+            manager_apm:
                 mappings:
                     CdoUserBundle: ~
-                connection:       connection_default
+                    CdoAccountBundle: ~
+                connection:       connection_apm
             manager_0:
                 mappings:
                     CdoUserBundle: ~
+                    CdoAccountBundle: ~
                 connection:       connection_0
 
 # Swiftmailer Configuration
@@ -89,7 +91,7 @@ fos_user:
     firewall_name: main
     user_class:    Cdo\UserBundle\Entity\User
     service:
-        user_manager: cdo_user.user_manager.connection_default # need to set default
+        user_manager: cdo_user.user_manager.connection_apm # need to set default
     profile:
         form:
             type: cdo_user_profile

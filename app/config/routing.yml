@@ -1,3 +1,11 @@
+apm_account:
+    resource: "@ApmAccountBundle/Resources/config/routing.yml"
+    prefix:   /apm
+
+cdo_account:
+    resource: "@CdoAccountBundle/Resources/config/routing.yml"
+    prefix:   /
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
@@ -6,7 +14,7 @@ fos_user_profile:
     prefix: /profile
 
 fos_user_register:
-    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    resource: "@CdoUserBundle/Resources/config/routing.yml"
     prefix: /register
 
 fos_user_resetting:
