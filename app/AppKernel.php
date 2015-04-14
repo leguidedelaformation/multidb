@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
@@ -26,8 +25,6 @@ class AppKernel extends Kernel
             
             new AppBundle\AppBundle(),
             new Apm\SiteBundle\ApmSiteBundle(),
-            new Apm\UserBundle\ApmUserBundle(),
-            new Cdo\UserBundle\CdoUserBundle(),
             new Cdo\AccountBundle\CdoAccountBundle(),
             new Apm\AccountBundle\ApmAccountBundle(),
         );
