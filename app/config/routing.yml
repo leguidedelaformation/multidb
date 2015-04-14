@@ -17,6 +17,10 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
 
+apm_user:
+    resource: "@ApmUserBundle/Resources/config/routing.yml"
+    prefix:   /apm
+
 cdo_user:
     resource: "@CdoUserBundle/Resources/config/routing.yml"
     prefix:   /

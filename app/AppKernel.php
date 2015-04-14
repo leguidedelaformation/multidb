@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             
             new AppBundle\AppBundle(),
             new Apm\SiteBundle\ApmSiteBundle(),
+            new Apm\UserBundle\ApmUserBundle(),
             new Cdo\UserBundle\CdoUserBundle(),
         );
 
