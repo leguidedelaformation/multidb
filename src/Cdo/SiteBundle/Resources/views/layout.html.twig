@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>
             {% block title %}
-                Training Dev
+                Customer website
             {% endblock title %}
         </title>
         {% block stylesheets %}
@@ -20,6 +20,8 @@
         <div id="wrap">
             <div class="container">
                 {% block content %}
+                    {% block innercontent %}
+                    {% endblock innercontent %}
                 {% endblock content %}
             </div><!-- /.container -->
         </div><!-- /#wrap -->

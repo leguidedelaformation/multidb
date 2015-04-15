@@ -1,12 +1,16 @@
 <?php
 
-namespace Cdo\SecurityBundle\Controller;
+namespace Cdo\UserBundle\Controller\Visitor;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\SecurityContext;
 
 class SecurityController extends Controller
 {
+    /**
+     * @Template()
+     */
     public function loginAction()
     {
         $request = $this->getRequest();
@@ -18,10 +22,10 @@ class SecurityController extends Controller
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
-        return $this->render('CdoSecurityBundle:Security:login.html.twig', array(
+        return array(
             // last username entered by the user
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,
-        ));
+        );
     }
 }

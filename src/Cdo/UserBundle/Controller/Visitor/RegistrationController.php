@@ -6,11 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cdo\UserBundle\Entity\User;
-use Cdo\UserBundle\Form\Visitor\User\RegistrationType;
+use Cdo\UserBundle\Form\Visitor\RegistrationType;
 
-/**
- * @Route("/")
- */
 class RegistrationController extends Controller
 {
     /**
@@ -19,10 +16,11 @@ class RegistrationController extends Controller
      */
     public function registerAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager('manager_0');
         
         $user = new User;
         $user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
+        $user->setIsActive(true);
         $user->setRoles(array('ROLE_USER'));
         
         $form = $this->createForm(new RegistrationType, $user);

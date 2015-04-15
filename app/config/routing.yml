@@ -2,16 +2,12 @@ cdo_site:
     resource: "@CdoSiteBundle/Resources/config/routing.yml"
     prefix:   /
 
-cdo_security_login:
+cdo_user_visitor_security_login:
     pattern:   /login
-    defaults:  { _controller: CdoSecurityBundle:Security:login }
+    defaults:  { _controller: CdoUserBundle:Visitor/Security:login }
 
-cdo_security_login_check:
+cdo_user_visitor_security_login_check:
     pattern:   /login_check
-
-cdo_security:
-    resource: "@CdoSecurityBundle/Resources/config/routing.yml"
-    prefix:   /
 
 cdo_user:
     resource: "@CdoUserBundle/Resources/config/routing.yml"
@@ -28,7 +24,3 @@ cdo_account:
 apm_site:
     resource: "@ApmSiteBundle/Resources/config/routing.yml"
     prefix:   /
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation

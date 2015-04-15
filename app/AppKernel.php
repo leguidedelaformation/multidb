@@ -23,17 +23,14 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             
-            new AppBundle\AppBundle(),
             new Apm\SiteBundle\ApmSiteBundle(),
             new Cdo\AccountBundle\CdoAccountBundle(),
             new Apm\AccountBundle\ApmAccountBundle(),
-            new Cdo\SecurityBundle\CdoSecurityBundle(),
             new Cdo\UserBundle\CdoUserBundle(),
             new Cdo\SiteBundle\CdoSiteBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

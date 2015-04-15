@@ -22,16 +22,17 @@ class UserProvider implements UserProviderInterface
     {
         $managerRegistry = $this->managerRegistry;
         
-        $em = $managerRegistry->getManager();
+        $em = $managerRegistry->getManager('manager_0');
         
         $user = $em->getRepository('CdoUserBundle:User')
-                   ->findOneByUsername($username);
+                   ->loadUserByUsername($username);
 
         if ($user) {
             $user_new = new User;
             $user_new->setUsername($user->getUsername());
             $user_new->setPassword($user->getPassword());
             $user_new->setSalt($user->getSalt());
+            $user_new->setIsActive($user->getIsActive());
             $user_new->setRoles($user->getRoles());
             
             return $user_new;

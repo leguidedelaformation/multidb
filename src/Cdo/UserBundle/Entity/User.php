@@ -2,7 +2,7 @@
 
 namespace Cdo\UserBundle\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="cdo_user_user")
  * @ORM\Entity(repositoryClass="Cdo\UserBundle\Entity\UserRepository")
  */
-class User implements UserInterface
+class User implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -25,7 +25,7 @@ class User implements UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255)
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     protected $username;
 
@@ -53,6 +53,18 @@ class User implements UserInterface
      * @var string
      */
     protected $plainPassword;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
+     */
+    private $email;
+
+    /**
+     * @ORM\Column(name="isActive", type="boolean")
+     */
+    private $isActive;
 
     /**
      * @var array
@@ -95,6 +107,12 @@ class User implements UserInterface
         return $this->username;
     }
 
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return User
+     */
     public function setSalt($salt)
     {
         $this->salt = $salt;
@@ -102,11 +120,22 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * Get salt
+     *
+     * @return string 
+     */
     public function getSalt()
     {
         return $this->salt;
     }
 
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
     public function setPassword($password)
     {
         $this->password = $password;
@@ -114,11 +143,22 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * Get password
+     *
+     * @return string 
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
+    /**
+     * Set plainPassword
+     *
+     * @param string $plainPassword
+     * @return User
+     */
     public function setPlainPassword($password)
     {
         $this->plainPassword = $password;
@@ -126,9 +166,37 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * Get plainPassword
+     *
+     * @return string 
+     */
     public function getPlainPassword()
     {
         return $this->plainPassword;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     public function eraseCredentials()
@@ -136,13 +204,36 @@ class User implements UserInterface
         $this->plainPassword = null;
     }
 
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
     public function addRole($role)
     {
         $role = strtoupper($role);
 //        if ($role === static::ROLE_DEFAULT) { // #GP_bug : "Undefined class constant 'ROLE_DEFAULT'"
-        if ($role === 'ROLE_DEFAULT') {
-            return $this;
-        }
+//        if ($role === 'ROLE_DEFAULT') {
+//            return $this;
+//        }
 
         if (!in_array($role, $this->roles, true)) {
             $this->roles[] = $role;
@@ -186,6 +277,26 @@ class User implements UserInterface
     {
         return in_array(strtoupper($role), $this->getRoles(), true);
     }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
     
 
     /**
@@ -200,6 +311,7 @@ class User implements UserInterface
         return serialize(array(
             $this->password,
             $this->salt,
+            $this->email,
             $this->username,
             $this->id,
         ));
@@ -220,21 +332,9 @@ class User implements UserInterface
         list(
             $this->password,
             $this->salt,
+            $this->email,
             $this->username,
             $this->id
         ) = $data;
     }
-    
-//    public function __construct($username, $password, $salt, array $roles)
-//    {
-//        $this->username = $username;
-//        $this->password = $password;
-//        $this->salt = $salt;
-//        $this->roles = $roles;
-//    }
-//    public function __construct()
-//    {
-//        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
-//        $this->roles = array('ROLE_USER');
-//    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Cdo\UserBundle\Form\Visitor\User;
+namespace Cdo\UserBundle\Form\Visitor;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,6 +13,9 @@ class RegistrationType extends AbstractType
         $builder
             ->add('username', 'text', array(
                 'label' => 'Nom d\'utilisateur',
+            ))
+            ->add('email', 'email', array(
+                'label' => 'Email',
             ))
             ->add('plainPassword', 'password', array(
                 'label' => 'Mot de passe',
@@ -29,6 +32,6 @@ class RegistrationType extends AbstractType
 
     public function getName()
     {
-        return 'cdo_userbundle_visitor_user_registrationtype';
+        return 'cdo_userbundle_visitor_registrationtype';
     }
 }

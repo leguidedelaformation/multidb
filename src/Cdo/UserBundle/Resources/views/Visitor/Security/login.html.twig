@@ -2,12 +2,15 @@
     <div>{{ error.message }}</div>
 {% endif %}
 
-<form action="{{ path('cdo_security_login_check') }}" method="post">
-    <label for="username">Login :</label>
+<form action="{{ path('cdo_user_visitor_security_login_check') }}" method="post">
+    <label for="username">Pseudo ou email :</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" />
 
     <label for="password">Mot de passe :</label>
     <input type="password" id="password" name="_password" />
+
+    <input type="checkbox" id="remember_me" name="_remember_me" checked />
+    <label for="remember_me">Se souvenir de moi</label>
 
     {#
         Si vous voulez contrôler l'URL vers laquelle l'utilisateur est redirigé en cas de succès
