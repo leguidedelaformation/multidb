@@ -1,1 +1,8 @@
+parameters:
+    cdo_user.user_provider.class: Cdo\UserBundle\Service\UserProvider
+
 services:
+    cdo_user.user_provider:
+        class: "%cdo_user.user_provider.class%"
+        arguments:
+            - @doctrine

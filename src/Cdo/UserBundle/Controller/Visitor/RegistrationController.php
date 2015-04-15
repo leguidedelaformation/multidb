@@ -19,9 +19,11 @@ class RegistrationController extends Controller
      */
     public function registerAction()
     {
-        $em = $this->getDoctrine()->getManager('manager_0');
+        $em = $this->getDoctrine()->getManager();
         
         $user = new User;
+        $user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
+        $user->setRoles(array('ROLE_USER'));
         
         $form = $this->createForm(new RegistrationType, $user);
         

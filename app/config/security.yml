@@ -15,8 +15,10 @@ security:
         - { path: ^/master, roles: ROLE_ADMIN }
 
     providers:
-        main:
-            entity: { class: Cdo\UserBundle\Entity\User, property: username }
+        cdo_provider:
+            id: cdo_user.user_provider
+#        main:
+#            entity: { class: Cdo\UserBundle\Entity\User, property: username }
 
     encoders:
         Cdo\UserBundle\Entity\User: sha512

@@ -95,6 +95,13 @@ class User implements UserInterface
         return $this->username;
     }
 
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
     public function getSalt()
     {
         return $this->salt;
@@ -132,7 +139,8 @@ class User implements UserInterface
     public function addRole($role)
     {
         $role = strtoupper($role);
-        if ($role === static::ROLE_DEFAULT) {
+//        if ($role === static::ROLE_DEFAULT) { // #GP_bug : "Undefined class constant 'ROLE_DEFAULT'"
+        if ($role === 'ROLE_DEFAULT') {
             return $this;
         }
 
@@ -217,10 +225,16 @@ class User implements UserInterface
         ) = $data;
     }
     
-
-    public function __construct()
-    {
-        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
-        $this->roles = array('ROLE_USER');
-    }
+//    public function __construct($username, $password, $salt, array $roles)
+//    {
+//        $this->username = $username;
+//        $this->password = $password;
+//        $this->salt = $salt;
+//        $this->roles = $roles;
+//    }
+//    public function __construct()
+//    {
+//        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+//        $this->roles = array('ROLE_USER');
+//    }
 }
