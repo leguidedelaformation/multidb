@@ -1,12 +1,22 @@
 security:
-    providers:
-        in_memory:
-            memory: ~
-
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
-            security: false
-
-        default:
+        secured_area:
+            pattern:    ^/
             anonymous: ~
+            form_login:
+                login_path:  /login
+                check_path:  /login_check
+            http_basic:
+                realm: "Secured Demo Area"
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/master, roles: ROLE_ADMIN }
+
+    providers:
+        main:
+            entity: { class: Cdo\UserBundle\Entity\User, property: username }
+
+    encoders:
+        Cdo\UserBundle\Entity\User: sha512

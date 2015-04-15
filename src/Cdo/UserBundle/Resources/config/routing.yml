@@ -1,0 +1,4 @@
+cdo_user_visitor_registration:
+    resource: "@CdoUserBundle/Controller/Visitor/RegistrationController.php"
+    type:     annotation
+
