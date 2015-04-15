@@ -1,0 +1,27 @@
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.username) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.username) }}
+        {{ form_errors(form.username) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.email) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->
+<div class="form-group control-label">
+    <div class="col-sm-3">
+        {{ form_label(form.plainPassword) }}
+    </div><!-- /.col-sm-3 -->
+    <div class="col-sm-9">
+        {{ form_widget(form.plainPassword) }}
+        {{ form_errors(form.plainPassword) }}
+    </div><!-- /.col-sm-9 -->
+</div><!-- /.form-group -->

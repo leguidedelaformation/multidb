@@ -1,28 +1,4 @@
-cdo_user_registration_register:
-    pattern:  /register
-    defaults: { _controller: CdoUserBundle:User/Registration:register }
-
-fos_user_registration_confirm:
-    pattern:  /confirm/{token}
-    defaults: { _controller: CdoUserBundle:User/Registration:confirm }
-
-fos_user_registration_check_email:
-    pattern:  /check-email
-    defaults: { _controller: CdoUserBundle:User/Registration:checkEmail }
-
-fos_user_profile_edit:
-    pattern:  /profile/edit
-    defaults: { _controller: CdoUserBundle:User/Profile:edit }
-
-cdo_user_user_profile:
-    resource: "@CdoUserBundle/Controller/User/ProfileController.php"
-    type:     annotation
-
-cdo_user_user_redirect:
-    resource: "@CdoUserBundle/Controller/User/RedirectController.php"
-    type:     annotation
-
-cdo_user_user_changepassword:
-    resource: "@CdoUserBundle/Controller/User/ChangePasswordController.php"
+cdo_user_visitor_registration:
+    resource: "@CdoUserBundle/Controller/Visitor/RegistrationController.php"
     type:     annotation
 

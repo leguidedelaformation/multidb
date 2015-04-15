@@ -1,22 +1,8 @@
-services:
-    cdo_user.user_manager.connection_apm:
-        class: Cdo\UserBundle\Service\UserManager
-        public: true
-        arguments:
-            - @security.encoder_factory
-            - @fos_user.util.username_canonicalizer
-            - @fos_user.util.email_canonicalizer
-            - @doctrine
-            - 'manager_apm'
-            - %fos_user.model.user.class%
+parameters:
+    cdo_user.user_provider.class: Cdo\UserBundle\Service\UserProvider
 
-    cdo_user.user_manager.connection_0:
-        class: Cdo\UserBundle\Service\UserManager
-        public: true
+services:
+    cdo_user.user_provider:
+        class: "%cdo_user.user_provider.class%"
         arguments:
-            - @security.encoder_factory
-            - @fos_user.util.username_canonicalizer
-            - @fos_user.util.email_canonicalizer
             - @doctrine
-            - 'manager_0'
-            - %fos_user.model.user.class%

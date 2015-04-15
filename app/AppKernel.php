@@ -18,22 +18,19 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             
-            new AppBundle\AppBundle(),
             new Apm\SiteBundle\ApmSiteBundle(),
-            new Apm\UserBundle\ApmUserBundle(),
-            new Cdo\UserBundle\CdoUserBundle(),
             new Cdo\AccountBundle\CdoAccountBundle(),
             new Apm\AccountBundle\ApmAccountBundle(),
+            new Cdo\UserBundle\CdoUserBundle(),
+            new Cdo\SiteBundle\CdoSiteBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

@@ -48,7 +48,7 @@ doctrine:
                 driver:   "%database_driver%"
                 host:     "%database_host%"
                 port:     "%database_port%"
-                dbname:   "%database_name_apm%"
+                dbname:   "%database_name%"
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
@@ -84,18 +84,3 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-
-# FOS User Configuration
-fos_user:
-    db_driver:     orm
-    firewall_name: main
-    user_class:    Cdo\UserBundle\Entity\User
-    service:
-        user_manager: cdo_user.user_manager.connection_apm # need to set default
-    profile:
-        form:
-            type: cdo_user_profile
-            validation_groups: [Default]
-    registration:
-        confirmation:
-            enabled: true

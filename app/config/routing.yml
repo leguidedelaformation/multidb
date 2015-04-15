@@ -1,3 +1,21 @@
+cdo_site:
+    resource: "@CdoSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+cdo_user_visitor_security_login:
+    pattern:   /login
+    defaults:  { _controller: CdoUserBundle:Visitor/Security:login }
+
+cdo_user_visitor_security_login_check:
+    pattern:   /login_check
+
+logout:
+    pattern:   /logout
+
+cdo_user:
+    resource: "@CdoUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 apm_account:
     resource: "@ApmAccountBundle/Resources/config/routing.yml"
     prefix:   /apm
@@ -6,41 +24,6 @@ cdo_account:
     resource: "@CdoAccountBundle/Resources/config/routing.yml"
     prefix:   /
 
-fos_user_security:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
-
-fos_user_profile:
-    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-    prefix: /profile
-
-fos_user_register:
-    resource: "@CdoUserBundle/Resources/config/routing.yml"
-    prefix: /register
-
-fos_user_resetting:
-    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
-    prefix: /resetting
-
-fos_user_change_password:
-    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /profile
-
-apm_user:
-    resource: "@ApmUserBundle/Resources/config/routing.yml"
-    prefix:   /apm
-
-cdo_user:
-    resource: "@CdoUserBundle/Resources/config/routing.yml"
-    prefix:   /
-
 apm_site:
     resource: "@ApmSiteBundle/Resources/config/routing.yml"
     prefix:   /
-
-cdo_user:
-    resource: "@CdoUserBundle/Resources/config/routing.yml"
-    prefix:   /
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation

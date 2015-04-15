@@ -3,7 +3,8 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     slw_apm
+    database_name_0:     slw_cdo0
     database_user:     root
     database_password: ~
     # You should uncomment this if you want use pdo_sqlite
@@ -17,4 +18,4 @@ parameters:
     locale:            en
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            9gfkd3j92pyt7fd32swfa3375c2p9x5688c5t53g
