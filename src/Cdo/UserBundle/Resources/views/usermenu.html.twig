@@ -1,0 +1,37 @@
+<li class="dropdown">
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            Bienvenue, {{ app.user.username }}
+            <span class="sr-only">Bienvenue, {{ app.user.username }}</span>
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li class="divider"></li>
+            <li>
+                <a href="{{ path('logout') }}">
+                    Déconnexion
+                    <span class="sr-only">Déconnexion</span>
+                </a>
+            </li>
+    {% else %}
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            Espace membre
+            <span class="sr-only">Espace membre</span>
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="{{ path('cdo_user_visitor_security_login') }}">
+                    Connexion
+                    <span class="sr-only">Connexion</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('cdo_user_visitor_registration_register') }}">
+                    Inscription
+                    <span class="sr-only">Inscription</span>
+                </a>
+            </li>
+        </ul>
+    {% endif %}
+</li>

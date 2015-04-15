@@ -1,4 +1,11 @@
 security:
+    role_hierarchy:
+        ROLE_MASTER:      [ROLE_USER]
+        ROLE_ADMIN:       [ROLE_MASTER]
+        ROLE_APM_ACCOUNT: [ROLE_USER]
+        ROLE_APM_MASTER:  [ROLE_APM_ACCOUNT]
+        ROLE_APM_ADMIN:   [ROLE_APM_MASTER, ROLE_ALLOWED_TO_SWITCH]
+
     firewalls:
         main:
             pattern:    ^/
@@ -11,6 +18,8 @@ security:
                 lifetime: 31536000 # 365 days in seconds
                 path:     /
                 domain:   ~ # Prend la valeur par défaut du domaine courant depuis $_SERVER
+            logout: ~
+            switch_user: true
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

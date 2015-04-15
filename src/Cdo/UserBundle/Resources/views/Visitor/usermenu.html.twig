@@ -1,0 +1,30 @@
+<ul class="nav navbar-nav navbar-right">
+  <li class="dropdown{% block navtab_user %}{% endblock navtab_user %}">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="header-user-responsive">
+      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}{{ app.user.firstname }}<br />{{ app.user.lastname }}{% else %}Organisme de<br /> formation{% endif %} <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <li><a href="{{ path('fos_user_security_login') }}" rel="nofollow">Connection</a></li>
+        <li><a href="{{ path('fos_user_registration_register') }}" rel="nofollow">Inscription</a></li>
+      {% else %}
+        {% if is_granted('ROLE_MEMBER') %}
+          {% if app.user.account %}
+            {% if app.user.account.subscription == 0 %}
+              <li><a href="{{ path('gf_account_member_facility_create', {'id': app.user.account.id}) }}">Coordonnées</a></li>
+            {% else %}
+              <li><a href="{{ path('gf_account_visitor_profile_show', {'id': app.user.account.id, 'slug': app.user.account.slug}) }}">Profil</a></li>
+              <li><a href="{% if not is_granted('ROLE_ACCOUNT') %}{{ path('gf_account_member_subscription_pickindex') }}{% else %}{{ path('gf_training_member_training_index', {'account': app.user.account.id}) }}{% endif %}">Formations</a></li>
+              <li><a href="{{ path('gf_customer_member_inquiryaccount_historyaccount', {'id': app.user.account.id}) }}">Mises en relation</a></li>
+            {% endif %}
+          {% else %}
+            <li><a href="{{ path('gf_account_member_account_pitch') }}">Référencez votre activité de formation</a></li>
+            <li><a href="{{ path('fos_user_profile_show') }}">Identifiants de connexion</a></li>
+          {% endif %}
+        {% endif %}
+        <li class="divider"></li>
+        <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+      {% endif %}
+    </ul>
+  </li>
+</ul>

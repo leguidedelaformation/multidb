@@ -9,6 +9,9 @@ cdo_user_visitor_security_login:
 cdo_user_visitor_security_login_check:
     pattern:   /login_check
 
+logout:
+    pattern:   /logout
+
 cdo_user:
     resource: "@CdoUserBundle/Resources/config/routing.yml"
     prefix:   /

@@ -36,8 +36,6 @@ class AccountController extends Controller
                 $em->persist($account);
                 $em->flush();
                 
-                $this->get('session')->getFlashBag()->add('success', 'Le compte « '.$account->getTitle().' » a été créé.');
-                
                 return $this->redirect($this->generateUrl('apm_site_visitor_site_homepage'));
             }
         }

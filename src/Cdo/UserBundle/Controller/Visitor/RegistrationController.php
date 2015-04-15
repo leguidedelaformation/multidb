@@ -5,6 +5,7 @@ namespace Cdo\UserBundle\Controller\Visitor;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Cdo\UserBundle\Entity\User;
 use Cdo\UserBundle\Form\Visitor\RegistrationType;
 
@@ -41,8 +42,11 @@ class RegistrationController extends Controller
                 $em->persist($user);
                 $em->flush();
                 
-                $this->get('session')->getFlashBag()->add('success', 'L\'utilisateur « '.$user->getUsername().' » a été créé.');
-                
+                // Automatic login
+                $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+                $this->get('security.context')->setToken($token);
+                $this->get('session')->set('_security_main',serialize($token));
+
                 return $this->redirect($this->generateUrl('apm_site_visitor_site_homepage'));
             }
         }
