@@ -19,7 +19,8 @@ class AccountController extends Controller
      */
     public function createAction()
     {
-        $em = $this->getDoctrine()->getManager('manager_0');
+        $manager_name = $this->container->get('session')->get('manager_name');
+        $em = $this->getDoctrine()->getManager($manager_name);
         
         $account = new Account;
         
@@ -36,7 +37,9 @@ class AccountController extends Controller
                 $em->persist($account);
                 $em->flush();
                 
-                return $this->redirect($this->generateUrl('apm_site_visitor_site_homepage'));
+                return $this->redirect($this->generateUrl('cdo_site_visitor_site_homepage', array(
+                    'subdomain' => $this->container->get('session')->get('subdomain'),
+                )));
             }
         }
         

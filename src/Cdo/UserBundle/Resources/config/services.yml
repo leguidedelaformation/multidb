@@ -6,3 +6,4 @@ services:
         class: "%cdo_user.user_provider.class%"
         arguments:
             - @doctrine
+            - @service_container

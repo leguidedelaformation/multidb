@@ -5,8 +5,8 @@ namespace Apm\AccountBundle\Controller\Master;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Cdo\AccountBundle\Entity\Account;
-use Cdo\AccountBundle\Form\Master\Account\CreateType;
+use Apm\AccountBundle\Entity\Account;
+use Apm\AccountBundle\Form\Master\Account\CreateType;
 
 /**
  * @Route("/master/account")
@@ -21,7 +21,14 @@ class AccountController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
+        $account_maxconnection = $em->getRepository('ApmAccountBundle:Account')
+                                  ->connectionMaxvalue();
+        $connection_maxvalue = ($account_maxconnection)
+        	? $account_maxconnection->getConnection()
+        	: 0;
+        
         $account = new Account;
+        $account->setConnection($connection_maxvalue + 1);
         
         $form = $this->createForm(new CreateType, $account);
         
@@ -33,6 +40,8 @@ class AccountController extends Controller
             
             if($form->isValid())
             {
+                $account->setTitle(ucfirst($account->getSubdomain()));
+                
                 $em->persist($account);
                 $em->flush();
                 
@@ -42,8 +51,8 @@ class AccountController extends Controller
             }
         }
         
-        return $this->render('CdoAccountBundle:Master/Account:create.html.twig', array(
+        return array(
             'form' => $form->createView(),
-        ));
+        );
     }
 }

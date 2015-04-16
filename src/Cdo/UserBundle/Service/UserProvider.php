@@ -8,24 +8,26 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Cdo\UserBundle\Entity\User;
+use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 
 class UserProvider implements UserProviderInterface
 {
-    private $managerRegistry;
+    protected $managerRegistry;
+    protected $container;
 
-    public function __construct(ManagerRegistry $managerRegistry)
+    public function __construct(ManagerRegistry $managerRegistry, Container $container)
     {
         $this->managerRegistry = $managerRegistry;
+        $this->container = $container;
     }
     
     public function loadUserByUsername($username)
     {
         $managerRegistry = $this->managerRegistry;
+        $manager_name = $this->container->get('session')->get('manager_name');
         
-        $em = $managerRegistry->getManager('manager_0');
-        
-        $user = $em->getRepository('CdoUserBundle:User')
-                   ->loadUserByUsername($username);
+        $user = $managerRegistry->getRepository('CdoUserBundle:User', $manager_name)
+                                ->loadUserByUsername($username);
 
         if ($user) {
             $user_new = new User;

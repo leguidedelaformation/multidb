@@ -68,11 +68,13 @@ doctrine:
         entity_managers:
             manager_apm:
                 mappings:
+                    ApmAccountBundle: ~
                     CdoUserBundle: ~
                     CdoAccountBundle: ~
                 connection:       connection_apm
             manager_0:
                 mappings:
+                    ApmAccountBundle: ~
                     CdoUserBundle: ~
                     CdoAccountBundle: ~
                 connection:       connection_0

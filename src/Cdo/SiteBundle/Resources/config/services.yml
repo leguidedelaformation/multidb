@@ -1,1 +1,9 @@
 services:
+    cdo_site.listener.subdomain_listener:
+        class: Cdo\SiteBundle\Listener\SubdomainListener
+        arguments:
+            container: "@service_container"
+            doctrine: "@doctrine"
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            - { name: twig.extension }
