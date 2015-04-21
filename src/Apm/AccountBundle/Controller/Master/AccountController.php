@@ -19,6 +19,7 @@ class AccountController extends Controller
      */
     public function createAction()
     {
+        $this->get('doctrine.dbal.dynamic_connection')->forceSwitch('slw_apm', 'root', 'root');
         $em = $this->getDoctrine()->getManager();
         
         $account_maxconnection = $em->getRepository('ApmAccountBundle:Account')
@@ -45,7 +46,7 @@ class AccountController extends Controller
                 $em->persist($account);
                 $em->flush();
                 
-                $this->get('session')->getFlashBag()->add('success', 'Le compte « '.$account->getTitle().' » a été créé.');
+                $this->container->get('apm_site.twig.connection_extension')->encode();
                 
                 return $this->redirect($this->generateUrl('apm_site_visitor_site_homepage'));
             }

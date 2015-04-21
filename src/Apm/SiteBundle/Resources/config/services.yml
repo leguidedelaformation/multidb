@@ -1,1 +1,8 @@
 services:
+    apm_site.twig.connection_extension:
+        class: Apm\SiteBundle\Extension\ConnectionExtension
+        arguments:
+            container: "@service_container"
+            doctrine: "@doctrine"
+        tags:
+            - { name: twig.extension }

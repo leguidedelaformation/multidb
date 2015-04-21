@@ -32,3 +32,6 @@ security:
 
     encoders:
         Cdo\UserBundle\Entity\User: sha512
+
+    acl:
+        connection: default

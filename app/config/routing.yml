@@ -1,6 +1,6 @@
 apm_user_visitor_security_login:
     pattern:   /login
-    host:     "%domain_apm%"
+#    host:     "%domain_apm%"
     defaults:
         _controller: ApmUserBundle:Visitor/Security:login
 

@@ -28,4 +28,14 @@ class AccountRepository extends EntityRepository
         return $qb->getQuery()
                   ->getOneOrNullResult();
     }
+    
+    public function connectionAll()
+    {
+        $qb = $this->createQueryBuilder('a')
+                   ->orderBy('a.connection')
+                   ;
+        
+        return $qb->getQuery()
+                  ->getResult();
+    }
 }

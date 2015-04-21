@@ -24,9 +24,9 @@ class UserProvider implements UserProviderInterface
     public function loadUserByUsername($username)
     {
         $managerRegistry = $this->managerRegistry;
-        $manager_name = $this->container->get('session')->get('manager_name');
+//        $manager_name = $this->container->get('session')->get('manager_name');
         
-        $user = $managerRegistry->getRepository('CdoUserBundle:User', $manager_name)
+        $user = $managerRegistry->getRepository('CdoUserBundle:User')
                                 ->loadUserByUsername($username);
 
         if ($user) {

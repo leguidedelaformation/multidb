@@ -25,15 +25,18 @@ class SubdomainListener extends \Twig_Extension
         $session = $this->container->get('session');
         if ($params) {
             if (array_key_exists('subdomain', $params)) {
+                $this->container->get('doctrine.dbal.dynamic_connection')->forceSwitch('slw_apm', 'root', 'root'); // #GP_temp : passer la liaison subdomain<->connection en json pour ne pas avoir à switcher
                 $subdomain = $params['subdomain'];
                 $connection = $this->doctrine->getManager()->getRepository('ApmAccountBundle:Account')
                                    ->findSubdomain($subdomain)->getConnection();
 
                 $session->set('subdomain', $subdomain);
-                $session->set('manager_name', 'manager_'.(string)$connection);
+//                $session->set('manager_name', 'manager_'.(string)$connection);
+                $this->container->get('doctrine.dbal.dynamic_connection')->forceSwitch('slw_cdo'.(string)$connection, 'root', 'root');
             }
         } else {
-            $session->set('manager_name', 'manager_apm');
+//            $session->set('manager_name', 'manager_apm');
+            $this->container->get('doctrine.dbal.dynamic_connection')->forceSwitch('slw_apm', 'root', 'root');
         }
         $session->save();
     }

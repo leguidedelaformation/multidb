@@ -1,0 +1,37 @@
+{
+    "abcformation": {
+        "number": 0,
+        "database_user": "root",
+        "database_password": "root"
+    },
+    "deftraining": {
+        "number": 0,
+        "database_user": "root",
+        "database_password": "root"
+    },
+    "qsdgf": {
+        "number": 1,
+        "database_user": "root",
+        "database_password": "root"
+    },
+    "ssdomtest": {
+        "number": 2,
+        "database_user": "root",
+        "database_password": "root"
+    },
+    "test": {
+        "number": 6,
+        "database_user": "root",
+        "database_password": "root"
+    },
+    "superof": {
+        "number": 4,
+        "database_user": "root",
+        "database_password": "root"
+    },
+    "Json OF": {
+        "number": 7,
+        "database_user": "root",
+        "database_password": "root"
+    }
+}
